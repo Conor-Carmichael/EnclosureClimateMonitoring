@@ -1,6 +1,8 @@
 # OctoPrint-Climatemonitor
 
-**TODO:** Describe what your plugin does.
+Climate monitoring plugin for octoprint. Leverages two DHT22 sensors to monitor temperature in humidity both in and outside the enclosure.
+
+Will add more to readme soon.
 
 ## Setup
 

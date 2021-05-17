@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_ClimateMonitor/templates *
+recursive-include octoprint_ClimateMonitor/translations *
+recursive-include octoprint_ClimateMonitor/static *

@@ -1,16 +1,23 @@
 import adafruit_dht
 import board
 
+import logging
+
+logging.basicConfig("./logs/device_loging.log")
+
 class Device:
 
-    def __init__(self, data_pin:int, type:str, *args, **kwargs) :
+    def __init__(self, data_pin:int, type:str, use_celsius:bool=False, *args, **kwargs) :
         self.data_pin = data_pin
         assert type in ['ambient', 'enclosure'] , f"type must be either 'enclosure' or 'ambient', {type} provided."
         self.type = type
+        self.use_celsius = use_celsius
         
 
 
     def _init_device(self): 
+        ''' Sets up the device with pin values, returns true if successful '''
+        # TODO: Do not know the board module well enough. Can look into more effective means for this later
         pin_num_convert = {
             "1": board.D1, 
             "2": board.D2, 
@@ -47,7 +54,15 @@ class Device:
             raise Exception("Error initializing the device. ")
 
     def get_temperature(self) -> float:
-        return float(self.device.temperature)
+        try:
+            t = float(self.device.temperature)
+            t = t if self.use_celsius else t * (9/5) + 32
+            return 
+        
+        except Exception as e:
+            logging.error(f"Read error on device {self.type} for temperature.")
+            return None
 
     def get_humidity(self) -> float:
+        tryL
         return float(self.device.humidity)
